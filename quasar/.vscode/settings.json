@@ -1,0 +1,8 @@
+{
+  "eslint.options": {
+    "configFile": "/_WORK/_REPO/iportfolio/quasar/.eslintrc.js"
+  },
+  "eslint.workingDirectories": [
+    "./quasar"
+  ]
+}
