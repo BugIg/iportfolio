@@ -22,7 +22,7 @@ const routes = [
   {
     name: 'signup',
     path: '/signup',
-    component: load('Hello')
+    component: load('signup/Signup')
   },
   {
     name: 'forgot_password',
