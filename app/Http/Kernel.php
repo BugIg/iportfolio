@@ -58,5 +58,7 @@ class Kernel extends HttpKernel
 
         'jwt.auth' => GetUserFromToken::class,
         'jwt.refresh' => RefreshToken::class,
+
+        'role' => 'App\Http\Middleware\CheckRole'
     ];
 }

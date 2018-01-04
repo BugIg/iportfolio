@@ -18,6 +18,10 @@ $api->version('v1', function (Router $api) {
 
     });
 
+    $api->group(['middleware' => ['jwt.auth','role:admin'], 'prefix' => 'admin', 'namespace' => 'App\\Api\\V1\\Controllers\\Admin'], function(Router $api) {
+        $api->get('dashboard', 'DashboardController@index');
+    });
+
     $api->group(['middleware' => 'jwt.auth', 'namespace' => 'App\\Api\\V1\\Controllers'], function(Router $api) {
         $api->get('me', 'UserController@me');
 

@@ -46,7 +46,7 @@ export default {
             authUser.token = res.token
             app.$store.state.isLoggedIn = true
             window.localStorage.setItem('lbUser', JSON.stringify(authUser))
-            if (authUser.data.name === 'Admin') {
+            if (authUser.data.role === 'admin') {
               app.$router.push('/')
             }
             else {
