@@ -5,6 +5,29 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Webpatser\Uuid\Uuid;
 
+/**
+ * App\Models\PortfolioCoin
+ *
+ * @property string $portfolio_id
+ * @property string $coin_id
+ * @property string $market_id
+ * @property string $type_trade
+ * @property float $amount
+ * @property float $price
+ * @property string $time_trade
+ * @property \Carbon\Carbon|null $created_at
+ * @property \Carbon\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\PortfolioCoin whereAmount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\PortfolioCoin whereCoinId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\PortfolioCoin whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\PortfolioCoin whereMarketId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\PortfolioCoin wherePortfolioId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\PortfolioCoin wherePrice($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\PortfolioCoin whereTimeTrade($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\PortfolioCoin whereTypeTrade($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\PortfolioCoin whereUpdatedAt($value)
+ * @mixin \Eloquent
+ */
 class PortfolioCoin extends Model
 {
     /**

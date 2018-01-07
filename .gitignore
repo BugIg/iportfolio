@@ -6,3 +6,5 @@
 Homestead.json
 Homestead.yaml
 .env
+/config/ide-helper.php
+_ide_helper.php
