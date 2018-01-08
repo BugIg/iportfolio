@@ -1,5 +1,5 @@
 <?php
-namespace App\Api\V1\Requests;
+namespace App\Api\V1\Admin\Requests\User;
 
 use Dingo\Api\Http\FormRequest;
 

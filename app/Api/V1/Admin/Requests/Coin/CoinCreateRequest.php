@@ -1,16 +1,15 @@
 <?php
-namespace App\Api\V1\Requests;
+namespace App\Api\V1\Admin\Requests\Coin;
 
 use Dingo\Api\Http\FormRequest;
 
-class UserCreateRequest extends FormRequest
+class CoinCreateRequest extends FormRequest
 {
     public function rules()
     {
         return [
-            'email'    => 'required|email|unique:users',
-            'name'     => 'required',
-            'password' => 'required|min:6'
+            'name'     => 'required|unique:coins',
+            'symbol'     => 'required|unique:coins',
         ];
     }
 

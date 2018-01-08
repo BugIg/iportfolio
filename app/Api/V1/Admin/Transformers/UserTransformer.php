@@ -1,5 +1,5 @@
 <?php
-namespace App\Transformers;
+namespace App\Api\V1\Admin\Transformers;
 
 use App\Models\User;
 use League\Fractal\TransformerAbstract;
