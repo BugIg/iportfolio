@@ -168,6 +168,8 @@ return [
          */
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
         Dingo\Api\Provider\LaravelServiceProvider::class,
+        App\Providers\DingoProvider::class,
+
         Barryvdh\Cors\ServiceProvider::class,
 
         /*

@@ -4,13 +4,12 @@ namespace App\Api\V1\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use App\Api\V1\Requests\UserRequest;
+use App\Api\V1\Requests\UserCreateRequest;
+use App\Api\V1\Requests\UserUpdateRequest;
 use App\Transformers\UserTransformer;
-use Dingo\Api\Exception\StoreResourceFailedException;
 use Dingo\Api\Http\Request;
 use Dingo\Api\Routing\Helpers;
 use Illuminate\Pagination\Paginator;
-use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -33,93 +32,63 @@ class UserController extends Controller
             });
         }
         $users = User::paginate($limit);
+
         return $this->response->paginator($users, new UserTransformer);
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @param UserRequest $request
-     * @return \Dingo\Api\Http\Response
+     * @param UserCreateRequest $request
+     * @return mixed
      */
-    public function create(UserRequest $request)
+    public function store(UserCreateRequest $request)
     {
-//        $validator = \Validator::make($request->all(), [
-//            'email'    => 'required|email|unique:users',
-//            'name'     => 'required',
-//            'password' => 'required|min:6'
-//        ]);
-//        if ($validator->fails()) {
-//            throw new StoreResourceFailedException('Could not create new user.', $validator->errors());
-//        }
-
-        $user = User::create([
-            'email'    => $request->get('email'),
-            'name'     => $request->get('name'),
-            'password' => Hash::make($request->get('password'))
-        ]);
+        $user = User::create($request->all());
         if ( $user ) {
-            return $this->response->item($user, new UserTransformer)->setStatusCode(200);
+            $this->response->created();
         } else {
-            return $this->response->array(['message' => 'Unable to create user. Please try again', 'status' => 200]);
+            $this->response->errorInternal("Unable to create user. Please try again");
         }
     }
 
     /**
      * Display the specified resource.
      *
-     * @param \Dingo\Api\Http\Request $request
      * @param int $id
-     * @return \Dingo\Api\Http\Response
+     * @return mixed
      */
-    public function show(Request $request, $id)
+    public function show(int $id)
     {
-        $user = User::findOrFail($id);
+        $user = User::find($id);
+
+        if($user == null)
+            $this->response->errorNotFound("Not found user.");
 
         return $this->response->item($user, new UserTransformer)->setStatusCode(200);
     }
-
     /**
-     * Show the form for editing the specified resource.
+     * Update user details
      *
-     * @param \Dingo\Api\Http\Request $request
+     * @param UserUpdateRequest $request
      * @param int $id
+     *
      * @return \Dingo\Api\Http\Response
      */
-    public function edit(Request $request, $id)
-    {
-        $user = User::findOrFail($id);
+    function update(UserUpdateRequest $request, int $id) {
 
-        return $this->response->item($user, new UserTransformer)->setStatusCode(200);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param UserRequest $request
-     * @param int $id
-     * @return \Dingo\Api\Http\Response
-     */
-    public function update(UserRequest $request, int $id) {
-        $validator = \Validator::make($request->all(), [
-            'id'       => 'required',
-            'email'    => 'required|email|unique:users',
-            'name'     => 'required',
-            'password' => 'min:6'
-        ]);
-        if ($validator->fails()) {
-            throw new StoreResourceFailedException('Could not able to update user.', $validator->errors());
-        }
-        $user = User::findOrFail($id);
+        $user = User::find($id);
+        if($user == null)
+            $this->response->errorNotFound("Not found user.");
         $user->email    = $request->get('email');
         $user->name     = $request->get('name');
-        if ($request->get('password')) {
-            $user->password = Hash::make($request->get('password'));
-        }
-        if ( $user->save() ) {
+        $user->password = $request->get('password');
+        $user->role     = $request->get('role');
+
+        if ( $user->update() ) {
             return $this->response->array(['message' => 'User has been updated successfully', 'status' => 200]);
         } else {
-            return $this->response->array(['message' => 'Unable to update user. Please try again', 'status' => 200]);
+            $this->response->errorInternal("Unable to update user. Please try again");
         }
     }
     /**
@@ -130,10 +99,14 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        if ( $user = User::find($id)->delete() ) {
-            return $this->response->array(['message' => 'User has been deleted successfully', 'status' => 200]);
+        $user = User::find($id);
+        if($user == null)
+            $this->response->errorNotFound("Not found user");
+
+        if ( $user->delete() ) {
+            $this->response->noContent();
         } else {
-            return $this->response->array(['message' => 'Unable to delete user. Please try again', 'status' => 200]);
+            $this->response->errorInternal("Unable to delete user. Please try again");
         }
     }
 }

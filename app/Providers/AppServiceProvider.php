@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,7 +14,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+//        if ($this->app->environment() !== 'production') {
+////            DB::listen(function ($query) {
+////                var_dump([
+////                    $query->sql,
+////                    $query->bindings,
+////                    $query->time
+////                ]);
+////            });
+//        }
     }
 
     /**
@@ -27,6 +36,6 @@ class AppServiceProvider extends ServiceProvider
             $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
         }
 
-        app('Dingo\Api\Transformer\Factory')->register('User', 'UserTransformer');
+        //app('Dingo\Api\Transformer\Factory')->register('User', 'UserTransformer');
     }
 }
