@@ -18,9 +18,11 @@ $api->version('v1', function (Router $api) {
 
     });
 
-    $api->group(['middleware' => ['jwt.auth','role:admin'], 'prefix' => 'admin', 'namespace' => 'App\\Api\\V1\\Controllers\\Admin'], function(Router $api) {
-        $api->get('dashboard', 'DashboardController@index');
+    $api->group(['middleware' => ['jwt.auth','role:admin'], 'prefix' => 'admin', 'namespace' => 'App\\Api\\V1\\Admin\\Controllers'], function(Router $api) {
+        //$api->get('dashboard', 'DashboardController@index');
         $api->resource('users', 'UserController');
+        $api->resource('markets', 'MarketController');
+        $api->resource('coins', 'CoinController');
     });
 
     $api->group(['middleware' => 'jwt.auth', 'namespace' => 'App\\Api\\V1\\Controllers'], function(Router $api) {

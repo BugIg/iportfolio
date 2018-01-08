@@ -42,6 +42,8 @@ class Market extends Model
         'created_at', 'updated_at',
     ];
 
+    public $incrementing = false;
+
     /**
      *  Setup model event hooks
      */
@@ -51,5 +53,13 @@ class Market extends Model
         self::creating(function ($model) {
             $model->id = (string) Uuid::generate(4);
         });
+    }
+
+    /**
+     * The coins that belong to the market.
+     */
+    public function coins()
+    {
+        return $this->belongsToMany('App\Models\Coin')->withPivot('price');
     }
 }

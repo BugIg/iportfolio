@@ -29,6 +29,15 @@ use Webpatser\Uuid\Uuid;
 class Coin extends Model
 {
     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'id', 'name', 'symbol', 'type', 'description', 'details'
+    ];
+
+    /**
      * The attributes that should be hidden for arrays.
      *
      * @var array
@@ -36,6 +45,8 @@ class Coin extends Model
     protected $hidden = [
         'created_at', 'updated_at',
     ];
+
+    public $incrementing = false;
 
     /**
      *  Setup model event hooks
@@ -46,5 +57,13 @@ class Coin extends Model
         self::creating(function ($model) {
             $model->id = (string) Uuid::generate(4);
         });
+    }
+
+    /**
+     * The markets that belong to the coin.
+     */
+    public function markets()
+    {
+        return $this->belongsToMany('App\Models\Market')->withPivot('price');
     }
 }
