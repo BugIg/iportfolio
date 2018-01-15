@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Webpatser\Uuid\Uuid;
 
 /**
  * App\Models\Coin
@@ -34,9 +33,8 @@ class Coin extends Model
      * @var array
      */
     protected $fillable = [
-        'id', 'name', 'symbol', 'type', 'description', 'details'
+       'name', 'code', 'status', 'rank', 'description', 'details'
     ];
-
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -45,19 +43,6 @@ class Coin extends Model
     protected $hidden = [
         'created_at', 'updated_at',
     ];
-
-    public $incrementing = false;
-
-    /**
-     *  Setup model event hooks
-     */
-    public static function boot()
-    {
-        parent::boot();
-        self::creating(function ($model) {
-            $model->id = (string) Uuid::generate(4);
-        });
-    }
 
     /**
      * The markets that belong to the coin.

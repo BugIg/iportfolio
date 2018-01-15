@@ -4,7 +4,7 @@ namespace App\Api\V1\Admin\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Api\V1\Admin\Requests\Market\MarketCreateRequest;
-use App\Api\V1\Admin\Requests\Market\CoinUpdateRequest;
+use App\Api\V1\Admin\Requests\Market\MarketUpdateRequest;
 use App\Api\V1\Admin\Transformers\MarketTransformer;
 use Dingo\Api\Routing\Helpers;
 use Illuminate\Database\Eloquent\ModelNotFoundException;

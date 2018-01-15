@@ -14,17 +14,21 @@ class CreateCoinsTable extends Migration
     public function up()
     {
         Schema::create('coins', function (Blueprint $table) {
-            $table->uuid('id');
-            $table->string('name', 50);
-            $table->string('symbol', 20)->unique();
-            $table->enum('type', ['coin', 'token'])->default('coin');
-            $table->text('description');
-            $table->jsonb('details');
+            $table->increments('id');
+            $table->string('name', 255);
+            $table->string('code', 20)->unique();
+            $table->unsignedTinyInteger('status')->default(1);;
+            $table->smallInteger('rank');
+            $table->char('logo_ext', 5)->nullable();
+            $table->text('description')->nullable();
+            $table->jsonb('details')->nullable();
             $table->timestamps();
-
-            $table->primary('id');
         });
     }
+
+
+
+
 
     /**
      * Reverse the migrations.

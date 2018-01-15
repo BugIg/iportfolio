@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Webpatser\Uuid\Uuid;
 
 /**
  * App\Models\Market
@@ -41,19 +40,6 @@ class Market extends Model
     protected $hidden = [
         'created_at', 'updated_at',
     ];
-
-    public $incrementing = false;
-
-    /**
-     *  Setup model event hooks
-     */
-    public static function boot()
-    {
-        parent::boot();
-        self::creating(function ($model) {
-            $model->id = (string) Uuid::generate(4);
-        });
-    }
 
     /**
      * The coins that belong to the market.

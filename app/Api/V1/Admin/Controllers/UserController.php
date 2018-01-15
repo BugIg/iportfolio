@@ -3,8 +3,8 @@
 namespace App\Api\V1\Admin\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Api\V1\Admin\Requests\User\MarketCreateRequest;
-use App\Api\V1\Admin\Requests\User\MarketUpdateRequest;
+use App\Api\V1\Admin\Requests\User\UserCreateRequest;
+use App\Api\V1\Admin\Requests\User\UserUpdateRequest;
 use App\Api\V1\Admin\Transformers\UserTransformer;
 use Dingo\Api\Routing\Helpers;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -47,10 +47,10 @@ class UserController extends Controller
      * POST /users/{id}
      * Show the form for creating a new resource.
      *
-     * @param MarketCreateRequest $request
+     * @param UserCreateRequest $request
      * @return mixed
      */
-    public function store(MarketCreateRequest $request)
+    public function store(UserCreateRequest $request)
     {
         $user = $this->repository->create($request->all());
         if ( $user ) {
@@ -80,12 +80,12 @@ class UserController extends Controller
      * PUT /users/{id}
      * Update user details
      *
-     * @param MarketUpdateRequest $request
+     * @param UserUpdateRequest $request
      * @param int $id
      *
      * @return \Dingo\Api\Http\Response
      */
-    function update(MarketUpdateRequest $request, int $id) {
+    function update(UserUpdateRequest $request, int $id) {
 
         try {
             $this->repository->update( $request->all(), $id );

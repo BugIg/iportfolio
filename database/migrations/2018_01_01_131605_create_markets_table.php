@@ -14,13 +14,14 @@ class CreateMarketsTable extends Migration
     public function up()
     {
         Schema::create('markets', function (Blueprint $table) {
-            $table->uuid('id');
-            $table->string('name', 50);
-            $table->text('description');
-            $table->jsonb('details');
+            $table->increments('id');
+            $table->string('name', 255);
+            $table->unsignedTinyInteger('status')->default(1);;
+            $table->smallInteger('rank');
+            $table->text('description')->nullable();
+            $table->char('logo_ext', 5)->nullable();
+            $table->jsonb('details')->nullable();
             $table->timestamps();
-
-            $table->primary('id');
         });
     }
 
