@@ -1,10 +1,10 @@
 <?php
 namespace App\Api\V1\Admin\Transformers;
 
-use App\Models\Market;
+use App\Models\Currency;
 use League\Fractal\TransformerAbstract;
 
-class MarketTransformer extends TransformerAbstract
+class CurrencyTransformer extends TransformerAbstract
 {
 
     /**
@@ -22,17 +22,18 @@ class MarketTransformer extends TransformerAbstract
     protected $defaultIncludes = [];
 
     /**
-     * @param Market $market
+     * @param Currency $currency
      * @return array
      */
-    public function transform(Market $market)
+    public function transform(Currency $currency)
     {
         $data = [
-            'id' => $market->id,
-            'name' => $market->name,
-            'description' => $market->description,
-            'logo_ext' => $market->logo_ext,
-            'details' => json_decode($market->details)
+            'id' => $currency->id,
+            'name' => $currency->name,
+            'code' => $currency->code,
+            'symbol_left' => $currency->symbol_left,
+            'symbol_right' => $currency->symbol_right,
+            'rank' => $currency->rank,
         ];
 
         return $data;

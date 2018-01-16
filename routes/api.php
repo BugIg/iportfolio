@@ -22,7 +22,11 @@ $api->version('v1', function (Router $api) {
         //$api->get('dashboard', 'DashboardController@index');
         $api->resource('users', 'UserController');
         $api->resource('markets', 'MarketController');
+        $api->get('markets/{id}/pairs', ['as' => 'markets.pairs', 'uses' => 'MarketController@getMarketPairs'] );
         $api->resource('coins', 'CoinController');
+        $api->resource('market_pairs', 'MarketPairsController');
+
+
     });
 
     $api->group(['middleware' => 'jwt.auth', 'namespace' => 'App\\Api\\V1\\Controllers'], function(Router $api) {

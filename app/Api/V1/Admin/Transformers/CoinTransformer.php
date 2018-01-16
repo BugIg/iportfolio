@@ -12,7 +12,7 @@ class CoinTransformer extends TransformerAbstract
      *
      * @var array
      */
-    protected $availableIncludes = ['markets'];
+    protected $availableIncludes = [];
 
     /**
      * Include resources without needing it to be requested.
@@ -30,30 +30,14 @@ class CoinTransformer extends TransformerAbstract
         $data = [
             'id' => $coin->id,
             'name' => $coin->name,
-            'symbol' => $coin->symbol,
-            'type' => $coin->type,
+            'code' => $coin->code,
+            'rank' => $coin->rank,
+            'logo_ext' => $coin->logo_ext,
             'description' =>  $coin->description,
             'details' => json_decode($coin->details)
         ];
 
-        if(isset($coin->pivot)) {
-            $data['price'] = $coin->pivot['price'];
-        }
-
         return $data;
-    }
-
-    /**
-     * Include Market
-     *
-     * @param Coin $coin
-     * @return mixed
-     */
-    public function includeMarkets(Coin $coin)
-    {
-        $markets = $coin->markets()->withPivot('price')->get();
-
-        return $this->collection($markets, new MarketTransformer);
     }
 }
 

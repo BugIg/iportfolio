@@ -5,12 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Webpatser\Uuid\Uuid;
 
+
 /**
  * App\Models\PortfolioCoin
  *
  * @property string $portfolio_id
- * @property string $coin_id
- * @property string $market_id
+ * @property int $coin_id
+ * @property int $currency_id
+ * @property int $market_id
  * @property string $type_trade
  * @property float $amount
  * @property float $price
@@ -20,6 +22,7 @@ use Webpatser\Uuid\Uuid;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\PortfolioCoin whereAmount($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\PortfolioCoin whereCoinId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\PortfolioCoin whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\PortfolioCoin whereCurrencyId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\PortfolioCoin whereMarketId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\PortfolioCoin wherePortfolioId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\PortfolioCoin wherePrice($value)

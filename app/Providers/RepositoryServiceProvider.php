@@ -33,6 +33,7 @@ class RepositoryServiceProvider extends ServiceProvider
             "User\UserRepositoryInterface" => 'User\UserRepositoryEloquent',
             "Coin\CoinRepositoryInterface" => 'Coin\CoinRepositoryEloquent',
             "Market\MarketRepositoryInterface" => 'Market\MarketRepositoryEloquent',
+            "MarketPair\MarketPairRepositoryInterface" => 'MarketPair\MarketPairRepositoryEloquent',
             "Currency\CurrencyRepositoryInterface" => 'Currency\CurrencyRepositoryEloquent',
         ];
 

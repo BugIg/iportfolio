@@ -9,15 +9,23 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @property int $id
  * @property string $name
- * @property string $symbol
- * @property string $description
+ * @property string $code
+ * @property string $symbol_left
+ * @property string $symbol_right
+ * @property int $rank
+ * @property string|null $description
+ * @property int $status
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Currency whereCode($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Currency whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Currency whereDescription($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Currency whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Currency whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Currency whereSymbol($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Currency whereRank($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Currency whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Currency whereSymbolLeft($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Currency whereSymbolRight($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Currency whereUpdatedAt($value)
  * @mixin \Eloquent
  */

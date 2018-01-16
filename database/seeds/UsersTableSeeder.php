@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\Models\User;
 
+
 class UsersTableSeeder extends Seeder
 {
     /**
@@ -16,13 +17,13 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'Admin',
                 'email' => 'admin@iportfolio.guru',
-                'password' => 'admin1290',
+                'password' => Hash::make('admin1290'),
                 'role' => 'admin'
             ],
             [
                 'name' => 'Customer',
                 'email' => 'customer@iportfolio.guru',
-                'password' => 'customer1290',
+                'password' =>  Hash::make('customer1290'),
                 'role' => 'customer'
             ],
         ];
