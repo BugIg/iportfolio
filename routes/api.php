@@ -21,10 +21,13 @@ $api->version('v1', function (Router $api) {
     $api->group(['middleware' => ['jwt.auth','role:admin'], 'prefix' => 'admin', 'namespace' => 'App\\Api\\V1\\Admin\\Controllers'], function(Router $api) {
         //$api->get('dashboard', 'DashboardController@index');
         $api->resource('users', 'UserController');
-        $api->resource('markets', 'MarketController');
-        $api->get('markets/{id}/pairs', ['as' => 'markets.pairs', 'uses' => 'MarketController@getMarketPairs'] );
         $api->resource('coins', 'CoinController');
-        $api->resource('market_pairs', 'MarketPairsController');
+        $api->resource('markets', 'MarketController');
+        $api->get('markets/{market}/pairs', 'MarketPairController@index');
+        $api->get('markets/{market}/pairs/{pair}', 'MarketPairController@show');
+        $api->post('markets/{market}/pairs', 'MarketPairController@store');
+        $api->put('markets/{market}/pairs/{pair}', 'MarketPairController@update');
+        $api->delete('markets/{market}/pairs/{pair}', 'MarketPairController@destroy');
 
 
     });

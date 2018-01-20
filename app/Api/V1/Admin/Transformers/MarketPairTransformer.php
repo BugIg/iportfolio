@@ -32,6 +32,9 @@ class MarketPairTransformer extends TransformerAbstract
             'market_id' => $marketPair->market_id,
             'currency_id' => $marketPair->currency_id,
             'coin_id' => $marketPair->coin_id,
+            'market_name' => $marketPair->market->name,
+            'currency_code' => $marketPair->currency->code,
+            'coin_code' => $marketPair->coin->code,
         ];
 
         return $data;
